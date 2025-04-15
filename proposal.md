@@ -1,7 +1,7 @@
-# Advanced Tic-Tac-Toe (And Tic-Tac!) - Final Project
+# 'Advanced' Tic-Tac-Toe (And Tic-Tac!)
 
 ## Repository
-<Link to your project's public GitHub respository> SSjacksonOC/DigitalArts-FinalProject/
+<Link to your project's public GitHub respository> https://github.com/SSjacksonOC/DigitalArts-FinalProject/
 
 ## Description
 I will attempt to construct code that plays a game of Tic-Tac-Toe (and the famous Tic-Tac!) with the addition of
@@ -26,27 +26,40 @@ elements such as counters, display text, a scoreboard, random turn selection in 
    	 have moving pixels to better detail and highlight the window and create a more pleasent experience.
 
 ## Challenges
-- Short sentence of any skill or topic that needs to be learnt or researched.
-- Short sentence of any skill or topic that needs to be learnt or researched.
-- Short sentence of any skill or topic that needs to be learnt or researched.
+- I will need to review information on how to implement complex shapes such as X's and O's to pygame rather than just simply pixels and square.
+- I will need to learn how to implement if/else statements in such a way that the 'Computer' is able to play against the 'User' while not also being perfect and with no chance of winning against.
+- I will need to learn the ins-and-outs of the pygame Game Window, as well as fix the spike of lag I commonly see in my prior rain.py lab when adjusting said window during play.
 
 ## Outcomes
 Ideal Outcome:
-- Briefly describe what is the ideal outcome?
+- The code takes User Input and places X's and O's in their designated positions.
+- X's and O's fall from the top of the screen (window) with flourish before settling into their designated spots.
+- The 'Computer' relies on comprehensive if/else statements to ensure optimal (with variation to limit unfairness) moves.
+- Alternative 'Win Phrases' are compiled and presented from a txt document.
+- All scoreboards and counters update properly.
+- Flourish is added to the 'Game Window': Animated Border, Colors, Variation, Layout, Design, etc...
+- The game runs smoothly.
+- The window is resizable and contents within is affected with said size change.
+- Difficulty Options are added, with the Normal Option having slight chances of 'sub-optimal' plays and is not impossible to beat.
 
 Minimal Viable Outcome:
-- Briefly describe the bare essential for a good working outcome?
+- The code takes User Input and places X's and O's in their designated positions.
+- X's and O's fall from the top of the screen into their designated spots.
+- The 'Computer' reliablies wins when purposefully making suboptimal plays, ensuring proper function and that the choices are not random.
+- There are alternative 'Win Phrases' compiled from a txt document.
+- Scoreboard and counters are updated correctly.
+- The game runs and the window is resizable.
 
 ## Milestones
 
 - Week 1
-  1. Goal 1
-  2. Goal 2
+  1. Divide space in a resizable window with pygame so that the gameboard may be places and the necessary info to place down X's and O's is possible
+  2. Implement a basic (more will be added later) animation of X's and O's dropping, as well as flourish and an outline.
 
 - Week 2
-  1. Goal 1
-  2. Goal 2
+  1. Write if/else statements to create win conditions and the computers actions
+  2. Ensure that this basic code runs. Touch up as needed.
 
 - Week N (Final)
-  1. Goal 1
-  2. Goal 2
+  1. Implement final details such as: Win phrases, counters and scoreboards, flourish, etc
+  2. Add finalized animation to code. Ensure everything runs smoothly.
