@@ -117,6 +117,10 @@ def restart():
         #>
     #>
 #<
+def introduction():
+    print("      XTREEME Tic-Tac-Toe!!!\n       ------------------------\n\nSEE RULES:\n")
+    print("Welcome! This program runs: Tic-Tac-Toe: The OG Connect Three game!\nThis is a turn based—2 Player—game where your goal is to\nconnect (3) vertically, horizontally, or diagonally with X/or/O symbols.")
+    print("At any point should you want to QUIT, press (Q) on your Keyboard\n During the match you can RESTART the board by pressing (R)")
 
 def main():
     game_over = False
@@ -124,11 +128,13 @@ def main():
     win_counter = 0
     loss_counter = 0
     draw_lines()
-    while True:
+    running = True
+    while running is True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
                 print("Thank you for playing! We'll See you next time on:\nTIC TAC TOE!!!")
+                running = True
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
                 mouseX = event.pos[0]
                 mouseY = event.pos[1]
@@ -140,24 +146,29 @@ def main():
                         game_over = True
                     player = player % 2 + 1
                     draw_figures()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_r:
-                        restart()
-                        player = 1
-                        game_over = False
-                        #
-                if event.type == pygame.WINDOWRESIZED or event.type == pygame.VIDEORESIZE:
-                    screen.fill(BG_COLOR)
-                    draw_lines()
-                    draw_figures()
-                    pygame.display.update()
-            pygame.display.update()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    restart()
+                    player = 1
+                    game_over = False
+                    #
+                if event.key == pygame.K_q:
+                    sys.exit()
+
+            if event.type == pygame.WINDOWRESIZED or event.type == pygame.VIDEORESIZE:
+                screen.fill(BG_COLOR)
+                draw_lines()
+                draw_figures()
+                pygame.display.update()
+        pygame.display.update()
             #
         #
     #
 #
 
 if __name__ == "__main__":
+    introduction()
     pygame.init()
     ## Screen! Gotta be visible to play...
     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
