@@ -1,5 +1,7 @@
 # MODULES
 import pygame, sys
+import math
+import random
 import numpy as np
 
 # initializes pygame
@@ -8,8 +10,8 @@ pygame.init()
 # ---------
 # CONSTANTS
 # ---------
-WIDTH = 600
-HEIGHT = 600
+#WIDTH = 600
+#HEIGHT = 600
 LINE_WIDTH = 15
 WIN_LINE_WIDTH = 15
 BOARD_ROWS = 3
@@ -21,16 +23,16 @@ CROSS_WIDTH = 25
 SPACE = 55
 # rgb: red green blue
 RED = (255, 0, 0)
-BG_COLOR = (28, 170, 156)
-LINE_COLOR = (23, 145, 135)
-CIRCLE_COLOR = (239, 231, 200)
+BG_COLOR = (245, 245, 220)
+LINE_COLOR = (122, 118, 104)
+CIRCLE_COLOR = (131, 163, 122)
 CROSS_COLOR = (66, 66, 66)
 
 # ------
 # SCREEN
 # ------
-screen = pygame.display.set_mode( (WIDTH, HEIGHT) )
-pygame.display.set_caption( 'TIC TAC TOE' )
+screen = pygame.display.set_mode( (800, 600), pygame.RESIZABLE )
+pygame.display.set_caption( 'TIC-TAC-TOE' )
 screen.fill( BG_COLOR )
 
 # -------------
@@ -53,6 +55,7 @@ def draw_lines():
 	pygame.draw.line( screen, LINE_COLOR, (2 * SQUARE_SIZE, 0), (2 * SQUARE_SIZE, 600), LINE_WIDTH )
 
 def draw_figures():
+    
 	for row in range(BOARD_ROWS):
 		for col in range(BOARD_COLS):
 			if board[row][col] == 1:
@@ -60,12 +63,14 @@ def draw_figures():
 			elif board[row][col] == 2:
 				pygame.draw.line( screen, CROSS_COLOR, (col * SQUARE_SIZE + SPACE, row * SQUARE_SIZE + SQUARE_SIZE - SPACE), (col * SQUARE_SIZE + SQUARE_SIZE - SPACE, row * SQUARE_SIZE + SPACE), CROSS_WIDTH )	
 				pygame.draw.line( screen, CROSS_COLOR, (col * SQUARE_SIZE + SPACE, row * SQUARE_SIZE + SPACE), (col * SQUARE_SIZE + SQUARE_SIZE - SPACE, row * SQUARE_SIZE + SQUARE_SIZE - SPACE), CROSS_WIDTH )
+			else: pass
 
 def mark_square(row, col, player):
 	board[row][col] = player
 
 def available_square(row, col):
-	return board[row][col] == 0
+	try: return board[row][col] == 0 
+	except IndexError: pass
 
 def is_board_full():
 	for row in range(BOARD_ROWS):
@@ -179,7 +184,11 @@ while True:
 				restart()
 				player = 1
 				game_over = False
-		
-       
+		if event.type == pygame.WINDOWRESIZED or event.type == pygame.VIDEORESIZE:
+			screen.fill( BG_COLOR )
+			draw_lines()
+			draw_figures()
+			pygame.display.update()
+			
 
 	pygame.display.update()
