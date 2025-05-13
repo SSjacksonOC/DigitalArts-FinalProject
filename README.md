@@ -1,10 +1,10 @@
 # !!!XTREEME Tic-Tac-Toe!!!
 
 ## Demo
-Demo Video: <URL>
+Demo Video: <https://www.reddit.com/user/Sentient-Sock/comments/1klb79d/final_project_python_tic_tac_toe/>
 
 ## GitHub Repository
-GitHub Repo: <URL>
+GitHub Repo: <https://github.com/SSjacksonOC/DigitalArts-FinalProject>
 
 ## Description
 This project is that of a 2-Player 'Tic-Tac-Toe' game with the additions of dialogue(s) with limited user interactivity,
