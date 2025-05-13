@@ -1,0 +1,2 @@
+pygame, sys
+numpy as np
