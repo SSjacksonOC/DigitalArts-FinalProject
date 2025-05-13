@@ -15,7 +15,7 @@ LINE_COLOR = (122, 118, 104)
 CIRCLE_COLOR = (131, 163, 122)
 WIN_LINE_WIDTH = 15
 CROSS_COLOR = (66, 66, 66)
-
+## DRAWING X's, O's, and Lines
 def draw_figures():
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
@@ -117,16 +117,67 @@ def restart():
         #>
     #>
 #<
+## FONT / TEXT / UPDATING COUNTERS
+def round_update(rco):
+    font = pygame.font.Font(None, 30)
+    text_surface = font.render(F"ROUNDS: {rco}", True, (138, 132, 109))
+    screen.blit(text_surface, (620, 10))
+    pygame.display.update()
+#<
+def win_update(rco):
+    font = pygame.font.Font(None, 30)
+    text_surface = font.render(F"WIN: {rco}", True, (138, 132, 109))
+    screen.blit(text_surface, (620, 80))
+    pygame.display.update()
+#<
+## INTRODUCTION / TEXT
 def introduction():
-    print("      XTREEME Tic-Tac-Toe!!!\n       ------------------------\n\nSEE RULES:\n")
-    print("Welcome! This program runs: Tic-Tac-Toe: The OG Connect Three game!\nThis is a turn based—2 Player—game where your goal is to\nconnect (3) vertically, horizontally, or diagonally with X/or/O symbols.")
-    print("At any point should you want to QUIT, press (Q) on your Keyboard\n During the match you can RESTART the board by pressing (R)")
+    print("\n      XTREEME Tic-Tac-Toe!!!\n     ------------------------\n\nSEE RULES:\n")
+    print("Welcome! This program runs: Tic-Tac-Toe: The OG Connect Three game!\nThis is a turn based—2-Player—game where your goal is to\nconnect (3) vertically, horizontally, or diagonally with X/or/O symbols.")
+    print("At any point should you want to QUIT, press (Q) on your Keyboard.\nDuring the match you can RESTART the round by pressing (R)\nNote that the counter resets upon QUITTING the game.\nKeep in mind that your game window MAY open in the background...\n   -----------------------------------------------")
+    print("\n\nANSWER with Y/N (or Q)\n\nWELCOME! Welcome~ This is your host—SentientSock—back again with—\nsay it with me now: XTREEME!!! TIC! TAC! TOE!\n")
+    choice = input("Tell me! Are you todays lucky contestant (Y/N/Q): ")
+    if choice == 'Y':
+        choice2 = input("\nHAHA!!! GOOD! There you have it folks\nMiss Pena, please bring up the board if you would be so kind.\n\nUser! I assume you are ready (Y/N/Q): ")
+        if choice2 == 'Y':
+            print("\nHere we go!")
+        elif choice2 == 'N':
+            print("\nOh... You done went and got my hopes up...")
+            quit()
+        elif choice2 == 'Q':
+            print("\nWaa—bu—BUT THE CONTRACT!? HEY! Don't you walk away from me!")
+            quit()
+        else:
+            print("\nI—I don't quite understand... Is that a positive? Negative?\nNevermind! PENA! Go grab a random celebrity. They love these shows, we are running behind.")
+            quit()
+    elif choice == 'N':
+        print("\nOOP! Walked into the wrong room? HEY! JEMMY! Cut the cameras!\nUser, do you know what broadcast you are in? We are still waiting for our contestent...\nHere, I'll walk over there with ya'.")
+        quit()
+    elif choice == 'Q':
+        print("\nOh... Well maybe next time then...")
+        quit()
+    else:
+        print("\nSorry... I didn't quite catch that. Try again? (Y /or/ N /or/ Q)")
+        choice1 = input("\nTell me! Are you todays lucky contestant (Y/N/Q): ")
+        if choice1 == 'Y':
+            print("\nAlright. Pena, the board please!")
+        elif choice1 == 'N':
+            print("\nWell no wonder. This is the wrong broadcast, ya' doof. Here, I'll walk you to management.")
+            quit()
+        elif choice1 == 'Q':
+            print("\nOh... Well, get me someone who will.")
+            quit()
+        else:
+            print("\nWell I be darned. Stop wasting my time!")
+            quit()
+        #
+    #
 
 def main():
     game_over = False
     player = 1
+    round_counter = 0
     win_counter = 0
-    loss_counter = 0
     draw_lines()
     running = True
     while running is True:
@@ -146,12 +197,22 @@ def main():
                         game_over = True
                     player = player % 2 + 1
                     draw_figures()
+                    if game_over is True and player == 2:
+                        restart()
+                        game_over = False
+                        win_counter += 1
+                        win_update(win_counter)
+                        round_counter += 1
+                        round_update(round_counter)
+                        player = 1
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     restart()
                     player = 1
                     game_over = False
+                    round_counter += 1
+                    round_update(round_counter)
                     #
                 if event.key == pygame.K_q:
                     sys.exit()
@@ -160,8 +221,12 @@ def main():
                 screen.fill(BG_COLOR)
                 draw_lines()
                 draw_figures()
+                round_update(round_counter)
+                win_update(win_counter)
                 pygame.display.update()
         pygame.display.update()
+        win_update(win_counter)
+        round_update(round_counter)
             #
         #
     #
@@ -170,6 +235,7 @@ def main():
 if __name__ == "__main__":
     introduction()
     pygame.init()
+    pygame.font.init()
     ## Screen! Gotta be visible to play...
     screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
     pygame.display.set_caption('XTREEME Tic-Tac-Toe!!!')
